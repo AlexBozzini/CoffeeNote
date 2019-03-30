@@ -1,4 +1,4 @@
-package com.alexbozzini.coffeenote;
+package com.alexbozzini.coffeenote.FlavorNote;
 
 import javax.persistence.*;
 

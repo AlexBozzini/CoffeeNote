@@ -1,4 +1,9 @@
-package com.alexbozzini.coffeenote;
+package com.alexbozzini.coffeenote.Note;
+
+import com.alexbozzini.coffeenote.Coffee.Coffee;
+import com.alexbozzini.coffeenote.FlavorNote.FlavorNote;
+import com.alexbozzini.coffeenote.FoodPairing.FoodPairing;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,12 +14,18 @@ public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @ManyToOne
     private Coffee coffee;
     @Column(length = 50)
     private String brewingMethod;
     @Column(length = 50)
     private String coffeeBody;
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @OneToMany
     private List<FlavorNote> flavorNotes;
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @OneToMany
     private List<FoodPairing> foodPairings;
     private String noteBody;
 
