@@ -1,6 +1,7 @@
 package com.alexbozzini.coffeenote;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,5 +27,15 @@ public class Note {
         this.flavorNotes = flavorNotes;
         this.foodPairings = foodPairings;
         this.noteBody = noteBody;
+    }
+
+    public Note(){
+        this.id = null;
+        this.coffee = new Coffee();
+        this.brewingMethod = "";
+        this.coffeeBody = "";
+        this.flavorNotes = new ArrayList<>();
+        this.foodPairings = new ArrayList<>();
+        this.noteBody = "";
     }
 }
