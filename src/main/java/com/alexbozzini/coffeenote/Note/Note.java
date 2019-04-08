@@ -3,34 +3,29 @@ package com.alexbozzini.coffeenote.Note;
 import com.alexbozzini.coffeenote.Coffee.Coffee;
 import com.alexbozzini.coffeenote.FlavorNote.FlavorNote;
 import com.alexbozzini.coffeenote.FoodPairing.FoodPairing;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 
 @Entity
 public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Coffee coffee;
-    @Column(length = 50)
     private String brewingMethod;
-    @Column(length = 50)
     private String coffeeBody;
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @OneToMany
-    private List<FlavorNote> flavorNotes;
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @OneToMany
-    private List<FoodPairing> foodPairings;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<FlavorNote> flavorNotes;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<FoodPairing> foodPairings;
     private String noteBody;
 
-    public Note(Long id, Coffee coffee, String brewingMethod, String coffeeBody, List<FlavorNote> flavorNotes,
-        List<FoodPairing> foodPairings, String noteBody){
+    public Note(Long id, Coffee coffee, String brewingMethod, String coffeeBody, Set<FlavorNote> flavorNotes,
+        Set<FoodPairing> foodPairings, String noteBody){
         this.id = id;
         this.coffee = coffee;
         this.brewingMethod = brewingMethod;
@@ -40,13 +35,77 @@ public class Note {
         this.noteBody = noteBody;
     }
 
-    public Note(){
-        this.id = null;
-        this.coffee = new Coffee();
-        this.brewingMethod = "";
-        this.coffeeBody = "";
-        this.flavorNotes = new ArrayList<>();
-        this.foodPairings = new ArrayList<>();
-        this.noteBody = "";
+    public Note(Coffee coffee, String brewingMethod, String coffeeBody, Set<FlavorNote> flavorNotes, Set<FoodPairing> foodPairings, String noteBody) {
+        this.coffee = coffee;
+        this.brewingMethod = brewingMethod;
+        this.coffeeBody = coffeeBody;
+        this.flavorNotes = flavorNotes;
+        this.foodPairings = foodPairings;
+        this.noteBody = noteBody;
+    }
+
+    public Note(String brewingMethod, String coffeeBody, String noteBody) {
+        this.brewingMethod = brewingMethod;
+        this.coffeeBody = coffeeBody;
+        this.noteBody = noteBody;
+    }
+
+    public Note() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Coffee getCoffee() {
+        return coffee;
+    }
+
+    public void setCoffee(Coffee coffee) {
+        this.coffee = coffee;
+    }
+
+    public String getBrewingMethod() {
+        return brewingMethod;
+    }
+
+    public void setBrewingMethod(String brewingMethod) {
+        this.brewingMethod = brewingMethod;
+    }
+
+    public String getCoffeeBody() {
+        return coffeeBody;
+    }
+
+    public void setCoffeeBody(String coffeeBody) {
+        this.coffeeBody = coffeeBody;
+    }
+
+    public Set<FlavorNote> getFlavorNotes() {
+        return flavorNotes;
+    }
+
+    public void setFlavorNotes(Set<FlavorNote> flavorNotes) {
+        this.flavorNotes = flavorNotes;
+    }
+
+    public Set<FoodPairing> getFoodPairings() {
+        return foodPairings;
+    }
+
+    public void setFoodPairings(Set<FoodPairing> foodPairings) {
+        this.foodPairings = foodPairings;
+    }
+
+    public String getNoteBody() {
+        return noteBody;
+    }
+
+    public void setNoteBody(String noteBody) {
+        this.noteBody = noteBody;
     }
 }

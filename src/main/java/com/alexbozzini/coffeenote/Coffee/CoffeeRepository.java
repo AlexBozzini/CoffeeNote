@@ -1,9 +1,10 @@
 package com.alexbozzini.coffeenote.Coffee;
 
-import com.alexbozzini.coffeenote.Coffee.Coffee;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.rest.core.annotation.RestResource;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
 
-@RestResource(rel = "coffees", path = "coffees")
+@Repository
+@RepositoryRestResource(collectionResourceRel = "coffees", path = "coffees")
 public interface CoffeeRepository extends PagingAndSortingRepository<Coffee, Long> {
 }
