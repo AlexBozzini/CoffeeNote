@@ -17,6 +17,7 @@ public class Note {
     @ManyToOne(cascade = CascadeType.ALL)
     private Coffee coffee;
     private String brewingMethod;
+    private String acidity;
     private String coffeeBody;
     @OneToMany(cascade = CascadeType.ALL)
     private Set<FlavorNote> flavorNotes;
@@ -24,28 +25,31 @@ public class Note {
     private Set<FoodPairing> foodPairings;
     private String noteBody;
 
-    public Note(Long id, Coffee coffee, String brewingMethod, String coffeeBody, Set<FlavorNote> flavorNotes,
+    public Note(Long id, Coffee coffee, String brewingMethod, String acidity, String coffeeBody, Set<FlavorNote> flavorNotes,
         Set<FoodPairing> foodPairings, String noteBody){
         this.id = id;
         this.coffee = coffee;
         this.brewingMethod = brewingMethod;
+        this.acidity = acidity;
         this.coffeeBody = coffeeBody;
         this.flavorNotes = flavorNotes;
         this.foodPairings = foodPairings;
         this.noteBody = noteBody;
     }
 
-    public Note(Coffee coffee, String brewingMethod, String coffeeBody, Set<FlavorNote> flavorNotes, Set<FoodPairing> foodPairings, String noteBody) {
+    public Note(Coffee coffee, String brewingMethod, String acidity, String coffeeBody, Set<FlavorNote> flavorNotes, Set<FoodPairing> foodPairings, String noteBody) {
         this.coffee = coffee;
         this.brewingMethod = brewingMethod;
+        this.acidity = acidity;
         this.coffeeBody = coffeeBody;
         this.flavorNotes = flavorNotes;
         this.foodPairings = foodPairings;
         this.noteBody = noteBody;
     }
 
-    public Note(String brewingMethod, String coffeeBody, String noteBody) {
+    public Note(String brewingMethod, String acidity, String coffeeBody, String noteBody) {
         this.brewingMethod = brewingMethod;
+        this.acidity = acidity;
         this.coffeeBody = coffeeBody;
         this.noteBody = noteBody;
     }
@@ -75,6 +79,14 @@ public class Note {
 
     public void setBrewingMethod(String brewingMethod) {
         this.brewingMethod = brewingMethod;
+    }
+
+    public String getAcidity(){
+        return acidity;
+    }
+
+    public void setAcidity(String acidity){
+        this.acidity = acidity;
     }
 
     public String getCoffeeBody() {
